@@ -28,16 +28,12 @@ public class WorkerServiceApplication {
 	static Logger LOGGER = Logger.getLogger(WorkerServiceApplication.class.getName());
 	
 	public static void main(String[] args) {
-		LOGGER.info("Opening job worker broker 1");
 	
 		final String jobType = "operation-add";
 		
-		final ZeebeClientBuilder builder = ZeebeClient.newClientBuilder().brokerContactPoint("127.0.0.1:26500");
-		LOGGER.info("Opening job worker broker 222 : " + builder);
+		final ZeebeClientBuilder builder = ZeebeClient.newClientBuilder().brokerContactPoint("10.56.16.227:26500");
 
 		try (ZeebeClient client = builder.build()) {
-
-			LOGGER.info("Opening job worker broker : " + "127.0.0.1:26500");
 
 			LOGGER.info("Job Name :: " + client.getConfiguration().getDefaultJobWorkerName());
 
