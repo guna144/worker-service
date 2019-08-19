@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -39,11 +40,17 @@ public class WorkerServiceApplication {
 
 			final JobWorker workerRegistration = client.newWorker().jobType(jobType).handler(new ExampleJobHandler1())
 					.timeout(Duration.ofSeconds(10)).open();
-
+			
 			LOGGER.info("Job worker opened and receiving jobs.");
 
 			// run until System.in receives exit command
-			waitUntilSystemInput("exit");
+			///waitUntilSystemInput("exit");
+			
+			try {
+			      new CountDownLatch(1).await();
+			    } catch (InterruptedException e) {
+			}
+			
 		}
 	}
 
